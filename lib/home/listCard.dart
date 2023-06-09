@@ -12,7 +12,7 @@ class ListCard extends StatelessWidget {
     return Container(
       decoration: bg ? BoxDecoration(color: Color(0xff595861),borderRadius: BorderRadius.circular(20)):BoxDecoration(borderRadius: BorderRadius.circular(20)),
       height: 92,
-      padding: EdgeInsets.fromLTRB(24, 31, 24, 31),
+      padding: EdgeInsets.fromLTRB(24, 30, 24, 30),
       child: Container(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -27,16 +27,16 @@ class ListCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                   Text(name,
-                  style: TextStyle(fontSize: 15,color: Colors.white, decoration: TextDecoration.none),
+                  style: TextStyle(fontSize: 15,color: Colors.white, decoration: TextDecoration.none, fontFamily: "GoogleSans"),
                   ),
                   SizedBox(height: 3,),
                   Text("mar 10",
-                  style: TextStyle(fontSize: 8,color: Colors.white, decoration: TextDecoration.none),
+                  style: TextStyle(fontSize: 8,color: Colors.white, decoration: TextDecoration.none, fontFamily: "GoogleSans"),
                   )
                 ]),)
               ]),
             ),
-            Text("\$$price".toString(), style: TextStyle(fontSize: 15,color: Colors.white, decoration: TextDecoration.none),),
+            Text("\$$price".toString(), style: TextStyle(fontSize: 15,color: Colors.white, decoration: TextDecoration.none, fontFamily: "GoogleSans"),),
           ],
         ),
       ),

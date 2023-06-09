@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wisp/home/list-card.dart';
+import 'package:wisp/home/listCard.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -21,14 +21,13 @@ class _HomeState extends State<Home> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
               Text("Wisp",
-              style: TextStyle(fontSize: 15,color: Colors.white, decoration: TextDecoration.none),),
+              style: TextStyle(fontFamily: "GoogleSans",fontSize: 15,color: Colors.white, decoration: TextDecoration.none,)),
               Container(
                 padding: EdgeInsets.all(3),
                 child: Container(
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
-                  child: Image.network('https://media.licdn.com/dms/image/C5603AQEJaQjvBdgFiw/profile-displayphoto-shrink_800_800/0/1639600085732?e=1691625600&v=beta&t=-Pna8FD32GG8_cWjkKRy3HSa20heS303j0qWPwzH2wM')),
-                decoration: BoxDecoration(border: Border.all(width: 1, color: Colors.white),
-                  borderRadius: BorderRadius.circular(5)
+                  decoration: BoxDecoration(shape: BoxShape.circle),
+                  child: ClipRRect(borderRadius: BorderRadius.circular(18),child: Image.network('https://media.licdn.com/dms/image/C5603AQEJaQjvBdgFiw/profile-displayphoto-shrink_800_800/0/1639600085732?e=1691625600&v=beta&t=-Pna8FD32GG8_cWjkKRy3HSa20heS303j0qWPwzH2wM'))),
+                decoration: BoxDecoration(shape: BoxShape.circle,border: Border.all(width: 2, color: Colors.white),
                 )
               )
             ],),
@@ -39,7 +38,7 @@ class _HomeState extends State<Home> {
             decoration: BoxDecoration(color: Color(0xffE6F5FB),borderRadius: BorderRadius.circular(35)),
           ),
           SizedBox(height: 30,),
-          ListCard("Spotify", 200, 'assets/graph.png', false),
+          ListCard("Google", 200, 'assets/graph.png', false),
           SizedBox(height: 20,),
           ListCard("Microsoft", 380, 'assets/graph.png', true),
           SizedBox(height: 20,),

@@ -17,12 +17,17 @@ class _NavbarState extends State<Navbar> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-          Container(
-            padding: EdgeInsets.all(12),
-            decoration: BoxDecoration(color: Color(0xffC9B6E9), shape: BoxShape.circle),
-            child: Image.asset('assets/home.png', color: Colors.black,height: 28, width: 28,),
-            height: 52,
-            width: 52,
+          GestureDetector(
+            onTap: () {
+              
+            },
+            child: Container(
+              padding: EdgeInsets.all(12),
+              decoration: BoxDecoration(color: Color(0xffC9B6E9), shape: BoxShape.circle),
+              child: Image.asset('assets/home.png', color: Colors.black,height: 28, width: 28,),
+              height: 52,
+              width: 52,
+            ),
           ),
           Container(
             padding: EdgeInsets.all(12),
