@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wisp/home/listCard.dart';
+import 'package:wisp/home/trendingSlider.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -33,16 +34,13 @@ class _HomeState extends State<Home> {
             ],),
           ),
           SizedBox(height: 40,),
-          Container(
-            height: 242,
-            decoration: BoxDecoration(color: Color(0xffE6F5FB),borderRadius: BorderRadius.circular(35)),
-          ),
+          TrendingSlider(),
           SizedBox(height: 30,),
-          ListCard("Google", 200, 'assets/graph.png', false),
+          ListCard("Google", "GOOGL", 200, "+1.24", 'assets/graph.png', false),
           SizedBox(height: 20,),
-          ListCard("Microsoft", 380, 'assets/graph.png', true),
+          ListCard("Microsoft", "MSFT", 380,"-1.54", 'assets/graph.png', true),
           SizedBox(height: 20,),
-          ListCard("Apple", 500, 'assets/graph.png', false)
+          ListCard("Apple", "AAPL", 500,"+1.55", 'assets/graph.png', false)
         ]),
       ),
     );

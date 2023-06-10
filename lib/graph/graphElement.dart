@@ -58,6 +58,8 @@ class _GraphElementState extends State<GraphElement> {
 
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
+      color: Colors.white,
+      decoration: TextDecoration.none,
       fontWeight: FontWeight.bold,
       fontSize: 16,
     );
@@ -85,7 +87,9 @@ class _GraphElementState extends State<GraphElement> {
 
   Widget leftTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
+      color: Colors.white,
       fontWeight: FontWeight.bold,
+      decoration: TextDecoration.none,
       fontSize: 15,
     );
     String text;

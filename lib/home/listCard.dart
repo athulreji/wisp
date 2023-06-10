@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 class ListCard extends StatelessWidget {
   final String name;
+  final String code;
   final int price;
+  final String increase;
   final String image;
   final bool bg;
-  const ListCard(this.name, this.price, this.image, this.bg, {super.key});
+  const ListCard(this.name, this.code, this.price, this.increase, this.image, this.bg, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,17 +28,33 @@ class ListCard extends StatelessWidget {
                 Container(child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                  Text(name,
+                  Text(code,
                   style: TextStyle(fontSize: 15,color: Colors.white, decoration: TextDecoration.none, fontFamily: "GoogleSans"),
                   ),
                   SizedBox(height: 3,),
-                  Text("mar 10",
-                  style: TextStyle(fontSize: 8,color: Colors.white, decoration: TextDecoration.none, fontFamily: "GoogleSans"),
+                  Text(name,
+                    style: TextStyle(fontSize: 8,color: Colors.white, decoration: TextDecoration.none, fontFamily: "GoogleSans"),
                   )
                 ]),)
               ]),
             ),
-            Text("\$$price".toString(), style: TextStyle(fontSize: 15,color: Colors.white, decoration: TextDecoration.none, fontFamily: "GoogleSans"),),
+            Container(
+              child: 
+                Container(child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                  Text(
+                    "\$$price".toString(),
+                    style: TextStyle(fontSize: 15,color: Colors.white, decoration: TextDecoration.none, fontFamily: "GoogleSans"),
+                  ),
+                  SizedBox(height: 3),
+                  Text(
+                    increase+"%",
+                    style: TextStyle(fontSize: 8,color: Colors.white, decoration: TextDecoration.none, fontFamily: "GoogleSans"),
+                  )
+                ]),
+              )
+            ),
           ],
         ),
       ),
