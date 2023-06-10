@@ -23,7 +23,7 @@ class ListCard extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                Image.asset(image),
+                Image.asset(image,height: 34, width: 34, ),
                 SizedBox(width: 18,),
                 Container(child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

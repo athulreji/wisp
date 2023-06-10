@@ -36,11 +36,11 @@ class _HomeState extends State<Home> {
           SizedBox(height: 40,),
           TrendingSlider(),
           SizedBox(height: 30,),
-          ListCard("Google", "GOOGL", 200, "+1.24", 'assets/graph.png', false),
+          ListCard("Google", "GOOGL", 200, "+1.24", 'assets/companies/google.png', false),
           SizedBox(height: 20,),
-          ListCard("Microsoft", "MSFT", 380,"-1.54", 'assets/graph.png', true),
+          ListCard("Microsoft", "MSFT", 380,"-1.54", 'assets/companies/microsoft.png', true),
           SizedBox(height: 20,),
-          ListCard("Apple", "AAPL", 500,"+1.55", 'assets/graph.png', false)
+          ListCard("Apple", "AAPL", 500,"+1.55", 'assets/companies/apple.png', false)
         ]),
       ),
     );
