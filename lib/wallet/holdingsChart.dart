@@ -74,7 +74,7 @@ class PieChart2State extends State {
     return List.generate(4, (i) {
       final isTouched = i == touchedIndex;
       final fontSize = isTouched ? 25.0 : 16.0;
-      final radius = isTouched ? 30.0 : 20.0;
+      final radius = isTouched ? 33.0 : 23.0;
       const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
       switch (i) {
         case 0:
