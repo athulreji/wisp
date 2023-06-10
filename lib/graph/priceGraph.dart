@@ -1,14 +1,14 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-class GraphElement extends StatefulWidget {
-  const GraphElement({super.key});
+class PriceGraph extends StatefulWidget {
+  const PriceGraph({super.key});
 
   @override
-  State<GraphElement> createState() => _GraphElementState();
+  State<PriceGraph> createState() => _PriceGraphState();
 }
 
-class _GraphElementState extends State<GraphElement> {
+class _PriceGraphState extends State<PriceGraph> {
   List<Color> gradientColors = [
     Color(0xFF50E4FF),
     Color(0xFF2196F3),

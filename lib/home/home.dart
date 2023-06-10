@@ -34,6 +34,19 @@ class _HomeState extends State<Home> {
             ],),
           ),
           SizedBox(height: 40,),
+          Container(
+            padding: EdgeInsets.fromLTRB(27, 0, 27, 0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Trending",
+                  style: TextStyle(fontFamily: "GoogleSans",fontSize: 25,color: Color(0xffC9B6E9), decoration: TextDecoration.none,)
+                ),
+                SizedBox(width: 3,)
+              ],
+            ),
+          ),
+          SizedBox(height: 20,),
           TrendingSlider(),
           SizedBox(height: 30,),
           Container(
@@ -44,8 +57,6 @@ class _HomeState extends State<Home> {
               ListCard("Microsoft", "MSFT", 380,"-1.54", 'assets/companies/microsoft.png', true),
               SizedBox(height: 20,),
               ListCard("Apple", "AAPL", 500,"+1.55", 'assets/companies/apple.png', false),
-              SizedBox(height: 20,),
-              ListCard("AMD", "AMD", 432,"+3.45", 'assets/companies/amd.png', true)
                 ]),
           ),
         ]),

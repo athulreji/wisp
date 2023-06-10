@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wisp/graph/graphElement.dart';
+import 'package:wisp/graph/detailsPage.dart';
 
 class Graph extends StatefulWidget {
   const Graph({super.key});
@@ -12,7 +12,7 @@ class _GraphState extends State<Graph> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: GraphElement()
+      child: DetailsPage()
     );
   }
 }

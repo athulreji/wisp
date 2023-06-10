@@ -12,7 +12,7 @@ class TrendingSlider extends StatelessWidget {
         height: 183,
         aspectRatio: 16/9,
         enableInfiniteScroll: false,
-        autoPlayInterval: Duration(seconds: 6),
+        autoPlayInterval: Duration(seconds: 5),
         autoPlay: true,
         viewportFraction: 0.8,
       ),
