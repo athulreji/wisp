@@ -9,22 +9,21 @@ class TrendingSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     return CarouselSlider(
       options: CarouselOptions(
-        height: 190,
-        padEnds: false,
+        height: 183,
         aspectRatio: 16/9,
         enableInfiniteScroll: false,
         autoPlayInterval: Duration(seconds: 6),
         autoPlay: true,
-        viewportFraction: 0.72,
+        viewportFraction: 0.8,
       ),
       items: [1,2,3].map((i) {
         return Builder(
           builder: (BuildContext context) {
             return Container(
               margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-              height: 190,
+              height: 183,
               decoration: BoxDecoration(color: Color(0xffE6F5FB),borderRadius: BorderRadius.circular(20)),
-              child: TrendingSliderCard(),
+              child: TrendingSliderCard("Tesla", "TSLA", "assets/companies/tesla.png", "432.435", "+14.24"),
             );
           },
         );

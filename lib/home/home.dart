@@ -14,9 +14,9 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        margin: EdgeInsets.fromLTRB(27, 10, 27, 0),
         child: Column(children: [
           Container(
+            margin: EdgeInsets.fromLTRB(27, 10, 27, 0),
             height: 40,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -36,11 +36,18 @@ class _HomeState extends State<Home> {
           SizedBox(height: 40,),
           TrendingSlider(),
           SizedBox(height: 30,),
-          ListCard("Google", "GOOGL", 200, "+1.24", 'assets/companies/google.png', false),
-          SizedBox(height: 20,),
-          ListCard("Microsoft", "MSFT", 380,"-1.54", 'assets/companies/microsoft.png', true),
-          SizedBox(height: 20,),
-          ListCard("Apple", "AAPL", 500,"+1.55", 'assets/companies/apple.png', false)
+          Container(
+            margin: EdgeInsets.fromLTRB(27, 10, 27, 0),
+            child: Column(children: [
+              ListCard("Google", "GOOGL", 200, "+1.24", 'assets/companies/google.png', false),
+              SizedBox(height: 20,),
+              ListCard("Microsoft", "MSFT", 380,"-1.54", 'assets/companies/microsoft.png', true),
+              SizedBox(height: 20,),
+              ListCard("Apple", "AAPL", 500,"+1.55", 'assets/companies/apple.png', false),
+              SizedBox(height: 20,),
+              ListCard("AMD", "AMD", 432,"+3.45", 'assets/companies/amd.png', true)
+                ]),
+          ),
         ]),
       ),
     );

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:wisp/wallet/lineChart.dart';
+import 'package:wisp/wallet/holdingsChart.dart';
 
 class Wallet extends StatefulWidget {
   const Wallet({super.key});
@@ -11,7 +13,12 @@ class _WalletState extends State<Wallet> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child:Text("wallet")
+      child: Container(
+        child: Column(children: [
+          const HoldingsChart(),
+          BarChartSample2()
+        ]),
+      )
     );
   }
 }
