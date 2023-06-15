@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:wisp/models/company.dart';
 
 class DetailsPageCard extends StatelessWidget {
-  const DetailsPageCard({super.key});
+  final Company company;
+  const DetailsPageCard(this.company,{super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,18 +21,18 @@ class DetailsPageCard extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Image.asset('assets/companies/tesla.png', width: 55, color: Colors.black,),
+                  Image.asset('assets/companies/${company.name.toLowerCase()}.png', width: 55, color: Colors.black,),
                   SizedBox(width: 5,),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "TSLA",
+                        company.code,
                         style: TextStyle(fontSize: 23,color: Colors.black, decoration: TextDecoration.none, fontFamily: "GoogleSans"),
                       ),
                       SizedBox(height: 2,),
                       Text(
-                        "Tesla Inc.",
+                        "${company.name} Inc.",
                         style: TextStyle(fontSize: 13,color: Colors.black, decoration: TextDecoration.none, fontFamily: "GoogleSans"),
                       ),
                     ],
@@ -40,12 +42,12 @@ class DetailsPageCard extends StatelessWidget {
               Column(
                 children: [
                   Text(
-                    "\$176.273",
+                    "\$${double.parse(company.close.toStringAsFixed(3))}",
                     style: TextStyle(fontSize: 20,color: Colors.black, decoration: TextDecoration.none, fontFamily: "GoogleSans"),
                   ),
                   SizedBox(height: 2,),
                   Text(
-                    "+1.45%",
+                    "${(company.increase>0)? "+": "" }${double.parse(company.increase.toStringAsFixed(3))}%",
                     style: TextStyle(fontSize: 15,color: Color(0xff827E9C), decoration: TextDecoration.none, fontFamily: "GoogleSans"),
                   ),
                 ],
@@ -66,7 +68,7 @@ class DetailsPageCard extends StatelessWidget {
                   ),
                   SizedBox(height: 2,),
                   Text(
-                    "\$156.273",
+                    "\$${double.parse(company.open.toStringAsFixed(3))}",
                     style: TextStyle(fontSize: 14,color: Colors.black, decoration: TextDecoration.none, fontFamily: "GoogleSans"),
                   ),
                 ],
@@ -74,12 +76,12 @@ class DetailsPageCard extends StatelessWidget {
               Column(
                 children: [
                   Text(
-                    "Day High",
+                    "High",
                     style: TextStyle(fontSize: 15,color: Color(0xff827E9C), decoration: TextDecoration.none, fontFamily: "GoogleSans"),
                   ),
                   SizedBox(height: 2,),
                   Text(
-                    "\$156.273",
+                    "\$${double.parse(company.high.toStringAsFixed(3))}",
                     style: TextStyle(fontSize: 14,color: Colors.black, decoration: TextDecoration.none, fontFamily: "GoogleSans"),
                   ),
                 ],
@@ -87,12 +89,12 @@ class DetailsPageCard extends StatelessWidget {
               Column(
                 children: [
                   Text(
-                    "Day Low",
+                    "Low",
                     style: TextStyle(fontSize: 15,color: Color(0xff827E9C), decoration: TextDecoration.none, fontFamily: "GoogleSans"),
                   ),
                   SizedBox(height: 2,),
                   Text(
-                    "\$156.273",
+                    "\$${double.parse(company.low.toStringAsFixed(3))}",
                     style: TextStyle(fontSize: 14,color: Colors.black, decoration: TextDecoration.none, fontFamily: "GoogleSans"),
                   ),
                 ],

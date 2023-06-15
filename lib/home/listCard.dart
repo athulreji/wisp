@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class ListCard extends StatelessWidget {
   final String name;
   final String code;
-  final int price;
-  final String increase;
+  final double price;
+  final double increase;
   final String image;
   final bool bg;
   const ListCard(this.name, this.code, this.price, this.increase, this.image, this.bg, {super.key});
@@ -49,7 +49,7 @@ class ListCard extends StatelessWidget {
                   ),
                   SizedBox(height: 3),
                   Text(
-                    increase+"%",
+                    (increase<0)?"$increase%": "+$increase%",
                     style: TextStyle(fontSize: 8,color: Colors.white, decoration: TextDecoration.none, fontFamily: "GoogleSans"),
                   )
                 ]),

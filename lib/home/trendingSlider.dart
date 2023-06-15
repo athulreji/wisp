@@ -1,9 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:wisp/home/TrendingSliderCard.dart';
+import 'package:wisp/models/company.dart';
 
 class TrendingSlider extends StatelessWidget {
-  const TrendingSlider({super.key});
+  final List<Company> companies;
+  const TrendingSlider(this.companies, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,14 +18,14 @@ class TrendingSlider extends StatelessWidget {
         autoPlay: true,
         viewportFraction: 0.8,
       ),
-      items: [1,2,3].map((i) {
+      items: companies.map((company) {
         return Builder(
           builder: (BuildContext context) {
             return Container(
               margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
               height: 183,
               decoration: BoxDecoration(color: Color(0xffE6F5FB),borderRadius: BorderRadius.circular(20)),
-              child: TrendingSliderCard("Tesla", "TSLA", "assets/companies/tesla.png", "432.435", "+14.24"),
+              child: TrendingSliderCard(company.name, company.code, "assets/companies/${company.name.toString().toLowerCase()}.png", double.parse(company.close.toStringAsFixed(2)), double.parse(company.increase.toStringAsFixed(2))),
             );
           },
         );

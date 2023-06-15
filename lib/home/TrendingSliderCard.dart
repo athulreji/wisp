@@ -4,8 +4,8 @@ class TrendingSliderCard extends StatelessWidget {
   final String name;
   final String code;
   final String logoImg;
-  final String price;
-  final String increase;
+  final double price;
+  final double increase;
 
   const TrendingSliderCard(this.name, this.code, this.logoImg, this.price, this.increase, {super.key});
 
@@ -23,7 +23,7 @@ class TrendingSliderCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text("TSLA", style: TextStyle(color: Color(0xff3D3B46),fontSize: 20,fontFamily: "GoogleSans", decoration: TextDecoration.none )),
+                  Text(code, style: TextStyle(color: Color(0xff3D3B46),fontSize: 20,fontFamily: "GoogleSans", decoration: TextDecoration.none )),
                   SizedBox(width: 5,),
                   Text("Inc", style: TextStyle(color: Color(0xff3D3B46),fontSize: 15,fontFamily: "GoogleSans", decoration: TextDecoration.none )),
                 ],
@@ -34,7 +34,7 @@ class TrendingSliderCard extends StatelessWidget {
           SizedBox(height: 13),
           Text("\$$price",style: TextStyle(color: Color(0xff3D3B46),fontSize: 20,fontFamily: "GoogleSans", decoration: TextDecoration.none )),
           SizedBox(height: 7,),
-          Text(increase+"%",style: TextStyle(color: Color(0xff827E9C),fontSize: 15,fontFamily: "GoogleSans", decoration: TextDecoration.none )),
+          Text((increase<0)?"$increase%": "+$increase%",style: TextStyle(color: Color(0xff827E9C),fontSize: 15,fontFamily: "GoogleSans", decoration: TextDecoration.none )),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

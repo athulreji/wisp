@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:wisp/home/listCard.dart';
 import 'package:wisp/home/trendingSlider.dart';
+import 'package:wisp/models/company.dart';
 
 class Home extends StatefulWidget {
-  const Home({super.key});
+  final List<Company> companies;
+  const Home(this.companies, {super.key});
 
   @override
   State<Home> createState() => _HomeState();
@@ -47,17 +49,17 @@ class _HomeState extends State<Home> {
             ),
           ),
           SizedBox(height: 20,),
-          TrendingSlider(),
+          TrendingSlider(widget.companies.sublist(0,3)),
           SizedBox(height: 30,),
           Container(
             margin: EdgeInsets.fromLTRB(27, 10, 27, 0),
             child: Column(children: [
-              ListCard("Google", "GOOGL", 200, "+1.24", 'assets/companies/google.png', false),
-              SizedBox(height: 20,),
-              ListCard("Microsoft", "MSFT", 380,"-1.54", 'assets/companies/microsoft.png', true),
-              SizedBox(height: 20,),
-              ListCard("Apple", "AAPL", 500,"+1.55", 'assets/companies/apple.png', false),
-                ]),
+              for(int i=0;i<3;i++) 
+                Column(children: [
+                  ListCard(widget.companies[i].name, widget.companies[i].code, double.parse(widget.companies[i].close.toStringAsFixed(3)), double.parse(widget.companies[i].increase.toStringAsFixed(2)), 'assets/companies/'+widget.companies[i].name.toLowerCase()+'.png', (i%2)!=0),
+                  SizedBox(height: 20,),
+                ],)
+            ]),
           ),
         ]),
       ),

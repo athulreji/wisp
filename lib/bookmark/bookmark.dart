@@ -25,9 +25,9 @@ class _BookmarkState extends State<Bookmark> {
             ],
           ),
           SizedBox(height: 30,),
-          ListCard("Google", "GOOGL", 200, "+1.24", 'assets/companies/google.png', false),
+          ListCard("Google", "GOOGL", 200, 1.234, 'assets/companies/google.png', false),
               SizedBox(height: 20,),
-              ListCard("Microsoft", "MSFT", 380,"-1.54", 'assets/companies/microsoft.png', true),
+              ListCard("Microsoft", "MSFT", 380,-1.54, 'assets/companies/microsoft.png', true),
         ]),
       )
     );

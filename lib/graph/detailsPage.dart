@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:wisp/api/predictions.dart';
 import 'package:wisp/graph/detailsPageCard.dart';
 import 'package:wisp/graph/priceGraph.dart';
+import 'package:wisp/models/company.dart';
 
 class DetailsPage extends StatefulWidget {
-  const DetailsPage({super.key});
+  final Company company;
+  const DetailsPage(this.company, {super.key});
 
   @override
   State<DetailsPage> createState() => _DetailsPageState();
@@ -33,9 +36,18 @@ class _DetailsPageState extends State<DetailsPage> {
             ],
           ),
           SizedBox(height: 30,),
-          DetailsPageCard(),
-          SizedBox(height: 20,),
-          PriceGraph(),
+          DetailsPageCard(widget.company),
+          SizedBox(height: 30,),
+          StreamBuilder<dynamic>(
+          stream: Stream.fromFuture(fetchPredictionsData(widget.company.code)),
+          builder: (context, snapshot) {
+            if (snapshot.hasData == false) {
+              return Center(child: CircularProgressIndicator(color: Color(0xFFE6F5FB),));
+            }
+            else{
+              return PriceGraph(snapshot.data);
+            }
+          }),
         ],
       ),
     );

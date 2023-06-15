@@ -84,7 +84,7 @@ class PieChart2State extends State {
             title: '40%',
             showTitle: false,
             badgeWidget: Container(
-              padding: EdgeInsets.all(5),
+              padding: EdgeInsets.all(3),
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Color(0xFFd5e9df)),
               child: Image.asset('assets/companies/tesla.png', height: 35, color: Color(0xff3D3B46),)
             ),
@@ -106,7 +106,7 @@ class PieChart2State extends State {
             radius: radius,
             showTitle: false,
             badgeWidget: Container(
-              padding: EdgeInsets.all(5),
+              padding: EdgeInsets.all(3),
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Color(0xFFc6cbff)),
               child: Image.asset('assets/companies/amazon.png', height: 35, color: Color(0xff3D3B46),)
             ),
@@ -126,7 +126,7 @@ class PieChart2State extends State {
             title: '15%',
             showTitle: false,
             badgeWidget: Container(
-              padding: EdgeInsets.all(5),
+              padding: EdgeInsets.all(3),
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Color(0xFFf9f3d3)),
               child: Image.asset('assets/companies/amd.png', height: 35, color: Color(0xff3D3B46),)
             ),
@@ -147,7 +147,7 @@ class PieChart2State extends State {
             title: '15%',
             showTitle: false,
             badgeWidget: Container(
-              padding: EdgeInsets.all(5),
+              padding: EdgeInsets.all(3),
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Color(0xFFfbdae5)),
               child: Image.asset('assets/companies/microsoft.png', height: 35, color: Color(0xff3D3B46),)
             ),

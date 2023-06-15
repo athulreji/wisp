@@ -1,7 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:wisp/api/companies.dart';
+import 'package:wisp/api/predictions.dart';
 import 'package:wisp/bookmark/bookmark.dart';
 import 'package:wisp/graph/graph.dart';
 import 'package:wisp/home/home.dart';
+import 'package:wisp/services/companies.dart';
 import 'package:wisp/wallet/wallet.dart';
 
 void main() {
@@ -22,8 +27,8 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'wisp',
       theme: ThemeData(
+        scaffoldBackgroundColor: Color(0xff3D3B46),
         fontFamily: "GoogleSans",
-        // colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 0, 0, 0)),
         useMaterial3: true,
       ),
       home: const  Navigator(),
@@ -40,9 +45,20 @@ class Navigator extends StatefulWidget {
 }
 
 class _NavigatorState extends State<Navigator> {
+  Widget selectScreen(i, data) {
+    if(i==0)
+      return Home(data);
+    else if(i==1)
+      return Graph(data);
+    else if(i==2)
+      return Wallet();
+    else if(i==3)
+      return Bookmark();
+    else 
+      return Text("");
+  }
   int _activeIndex = 0;
   final navbarAssets = ['assets/home.png', 'assets/graph.png', 'assets/wallet.png', 'assets/bookmark.png'];
-  final mainScreens = [Home(), Graph(), Wallet(), Bookmark()];
 
   void _changeIndex(x) {
     setState(() {
@@ -59,7 +75,16 @@ class _NavigatorState extends State<Navigator> {
           color: Color(0xff3D3B46),
           child: Column(children: [
             Expanded(
-              child: mainScreens[_activeIndex],
+              child: StreamBuilder<List<dynamic>>(
+              stream: Stream.fromFuture(fetchCompaniesData()),
+              builder: (context, snapshot) {
+                if (snapshot.hasData == false) {
+                  return Center(child: CircularProgressIndicator());
+                }
+                else{
+                  return selectScreen(_activeIndex, snapshot.data);
+                }
+              }),
             ),
             Container(
               child: Container(

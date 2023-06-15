@@ -1,8 +1,10 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:wisp/models/prediction.dart';
 
 class PriceGraph extends StatefulWidget {
-  const PriceGraph({super.key});
+  final Prediction data;
+  const PriceGraph(this.data, {super.key});
 
   @override
   State<PriceGraph> createState() => _PriceGraphState();
@@ -10,49 +12,118 @@ class PriceGraph extends StatefulWidget {
 
 class _PriceGraphState extends State<PriceGraph> {
   List<Color> gradientColors = [
-    Color(0xFF50E4FF),
-    Color(0xFF2196F3),
+    Color(0xFFE6F5FB),
+    Color(0xFFE6F5FB),
   ];
 
-  bool showAvg = false;
+  String graphTimeline = "5D";
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        AspectRatio(
-          aspectRatio: 1.70,
-          child: Padding(
-            padding: const EdgeInsets.only(
-              right: 18,
-              left: 12,
-              top: 24,
-              bottom: 12,
+    return Container(
+      padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
+        decoration: BoxDecoration(
+          border: Border.all(
+          color: Colors.black,
+          width: 1.0,
+        ),
+        borderRadius: BorderRadius.circular(35)
+      ),
+      child: Column(
+        children: [
+          Container(
+            margin: EdgeInsets.fromLTRB(35, 0, 25, 0),
+            decoration: BoxDecoration(
+              color: Colors.black,
+              borderRadius: BorderRadius.circular(20)
             ),
+            height: 50,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    if(graphTimeline!="5D")
+                      setState(() {
+                        graphTimeline="5D";
+                      });
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: (graphTimeline=="5D")?Color(0xFFE6F5FB):Colors.black,
+                      borderRadius: BorderRadius.circular(20)
+                    ),
+                    padding: EdgeInsets.all(15),
+                    child: Text("5D", style: TextStyle(color: (graphTimeline=="5D")?Colors.black:Color(0xFFE6F5FB),fontFamily: 'GoogleSans', fontSize: 15, decoration: TextDecoration.none),),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    if(graphTimeline!="1M")
+                      setState(() {
+                        graphTimeline="1M";
+                      });
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: (graphTimeline=="1M")?Color(0xFFE6F5FB):Colors.black,
+                      borderRadius: BorderRadius.circular(20)
+                    ),
+                    padding: EdgeInsets.all(15),
+                    child: Text("1M", style: TextStyle(color: (graphTimeline=="1M")?Colors.black:Color(0xFFE6F5FB),fontFamily: 'GoogleSans', fontSize: 15, decoration: TextDecoration.none),),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    if(graphTimeline!="1Y")
+                      setState(() {
+                        graphTimeline="1Y";
+                      });
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: (graphTimeline=="1Y")?Color(0xFFE6F5FB):Colors.black,
+                      borderRadius: BorderRadius.circular(20)
+                    ),
+                    padding: EdgeInsets.all(15),
+                    child: Text("1Y ", style: TextStyle(color: (graphTimeline=="1Y")?Colors.black:Color(0xFFE6F5FB),fontFamily: 'GoogleSans', fontSize: 15, decoration: TextDecoration.none),),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    if(graphTimeline!="Predictions")
+                      setState(() {
+                        graphTimeline="Predictions";
+                      });
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: (graphTimeline=="Predictions")?Color(0xFFE6F5FB):Colors.black,
+                      borderRadius: BorderRadius.circular(20)
+                    ),
+                    padding: EdgeInsets.all(15),
+                    child: Text("Prediction", style: TextStyle(color: (graphTimeline=="Predictions")?Colors.black:Color(0xFFE6F5FB),fontFamily: 'GoogleSans', fontSize: 15, decoration: TextDecoration.none),),
+                  ),
+                ),
+
+              ],
+            ),
+          ),
+          SizedBox(height: 30,),
+          AspectRatio(
+            aspectRatio: 1.3,
             child: LineChart(
-              showAvg ? avgData() : mainData(),
+              (graphTimeline=="5D")
+              ? mainData(5)
+              : (graphTimeline=="1M")
+                ? mainData(30)
+                : (graphTimeline=="1Y")
+                  ? mainData(365)
+                  : predictData()
             ),
           ),
-        ),
-        SizedBox(
-          width: 60,
-          height: 34,
-          child: TextButton(
-            onPressed: () {
-              setState(() {
-                showAvg = !showAvg;
-              });
-            },
-            child: Text(
-              'avg',
-              style: TextStyle(
-                fontSize: 12,
-                color: showAvg ? Colors.white.withOpacity(0.5) : Colors.white,
-              ),
-            ),
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -65,14 +136,17 @@ class _PriceGraphState extends State<PriceGraph> {
     );
     Widget text;
     switch (value.toInt()) {
+      case 0:
+        text = const Text('Day 1', style: style);
+        break;
+      case 1:
+        text = const Text('Day 2', style: style);
+        break;
       case 2:
-        text = const Text('MAR', style: style);
+        text = const Text('Day 3', style: style);
         break;
-      case 5:
-        text = const Text('JUN', style: style);
-        break;
-      case 8:
-        text = const Text('SEP', style: style);
+      case 3:
+        text = const Text('Day 4', style: style);
         break;
       default:
         text = const Text('', style: style);
@@ -88,33 +162,45 @@ class _PriceGraphState extends State<PriceGraph> {
   Widget leftTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
       color: Colors.white,
-      fontWeight: FontWeight.bold,
       decoration: TextDecoration.none,
-      fontSize: 15,
+      fontWeight: FontWeight.bold,
+      fontSize: 16,
     );
-    String text;
+    Widget text;
     switch (value.toInt()) {
       case 1:
-        text = '10K';
+        text = const Text('Day 1', style: style);
+        break;
+      case 2:
+        text = const Text('Day 2', style: style);
         break;
       case 3:
-        text = '30k';
+        text = const Text('Day 3', style: style);
+        break;
+      case 4:
+        text = const Text('Day 4', style: style);
         break;
       case 5:
-        text = '50k';
+        text = const Text('Day 4', style: style);
         break;
       default:
-        return Container();
+        text=Text("");
+        break;
     }
 
-    return Text(text, style: style, textAlign: TextAlign.left);
+    return SideTitleWidget(
+      axisSide: meta.axisSide,
+      child: text,
+    );
   }
 
-  LineChartData mainData() {
+  LineChartData mainData(int days) {
+    final dataLen = widget.data.data.length;
     return LineChartData(
       gridData: FlGridData(
         show: true,
-        drawVerticalLine: true,
+        drawVerticalLine: false,
+        drawHorizontalLine:false,
         horizontalInterval: 1,
         verticalInterval: 1,
         getDrawingHorizontalLine: (value) {
@@ -140,7 +226,7 @@ class _PriceGraphState extends State<PriceGraph> {
         ),
         bottomTitles: AxisTitles(
           sideTitles: SideTitles(
-            showTitles: true,
+            showTitles: false,
             reservedSize: 30,
             interval: 1,
             getTitlesWidget: bottomTitleWidgets,
@@ -148,37 +234,28 @@ class _PriceGraphState extends State<PriceGraph> {
         ),
         leftTitles: AxisTitles(
           sideTitles: SideTitles(
-            showTitles: true,
-            interval: 1,
+            showTitles: false,
+            interval: 50,
             getTitlesWidget: leftTitleWidgets,
-            reservedSize: 42,
+            reservedSize: 40,
           ),
         ),
       ),
       borderData: FlBorderData(
-        show: true,
+        show: false,
         border: Border.all(color: const Color(0xff37434d)),
       ),
-      minX: 0,
-      maxX: 11,
-      minY: 0,
-      maxY: 6,
       lineBarsData: [
         LineChartBarData(
-          spots: const [
-            FlSpot(0, 3),
-            FlSpot(2.6, 2),
-            FlSpot(4.9, 5),
-            FlSpot(6.8, 3.1),
-            FlSpot(8, 4),
-            FlSpot(9.5, 3),
-            FlSpot(11, 4),
+          spots:  [
+            for(int i=0;i<(days);i++)
+              FlSpot(double.parse(i.toString()), double.parse(widget.data.data[dataLen-days+i-1].toString())),
           ],
           isCurved: true,
           gradient: LinearGradient(
             colors: gradientColors,
           ),
-          barWidth: 5,
+          barWidth: 2,
           isStrokeCapRound: true,
           dotData: FlDotData(
             show: false,
@@ -195,82 +272,73 @@ class _PriceGraphState extends State<PriceGraph> {
       ],
     );
   }
-
-  LineChartData avgData() {
+  LineChartData predictData() {
     return LineChartData(
-      lineTouchData: LineTouchData(enabled: false),
+      lineTouchData: LineTouchData(
+        touchTooltipData: LineTouchTooltipData(
+          tooltipRoundedRadius: 10,
+          
+        )
+      ),
       gridData: FlGridData(
         show: true,
-        drawHorizontalLine: true,
-        verticalInterval: 1,
+        drawVerticalLine: false,
+        drawHorizontalLine:false,
         horizontalInterval: 1,
-        getDrawingVerticalLine: (value) {
+        verticalInterval: 1,
+        getDrawingHorizontalLine: (value) {
           return FlLine(
-            color: Color(0xff37434d),
+            color: Colors.white10,
             strokeWidth: 1,
           );
         },
-        getDrawingHorizontalLine: (value) {
+        getDrawingVerticalLine: (value) {
           return FlLine(
-            color: Color(0xff37434d),
+            color: Colors.white10,
             strokeWidth: 1,
           );
         },
       ),
       titlesData: FlTitlesData(
         show: true,
-        bottomTitles: AxisTitles(
-          sideTitles: SideTitles(
-            showTitles: true,
-            reservedSize: 30,
-            getTitlesWidget: bottomTitleWidgets,
-            interval: 1,
-          ),
-        ),
-        leftTitles: AxisTitles(
-          sideTitles: SideTitles(
-            showTitles: true,
-            getTitlesWidget: leftTitleWidgets,
-            reservedSize: 42,
-            interval: 1,
-          ),
+        rightTitles: AxisTitles(
+          sideTitles: SideTitles(showTitles: false),
         ),
         topTitles: AxisTitles(
           sideTitles: SideTitles(showTitles: false),
         ),
-        rightTitles: AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
+        bottomTitles: AxisTitles(
+          sideTitles: SideTitles(
+            showTitles: false,
+            reservedSize: 30,
+            interval: 1,
+            getTitlesWidget: bottomTitleWidgets,
+          ),
+        ),
+        leftTitles: AxisTitles(
+          sideTitles: SideTitles(
+            showTitles: false,
+            interval: 50,
+            getTitlesWidget: leftTitleWidgets,
+            reservedSize: 40,
+          ),
         ),
       ),
       borderData: FlBorderData(
-        show: true,
+        show: false,
         border: Border.all(color: const Color(0xff37434d)),
       ),
-      minX: 0,
-      maxX: 11,
-      minY: 0,
-      maxY: 6,
       lineBarsData: [
         LineChartBarData(
-          spots: const [
-            FlSpot(0, 3.44),
-            FlSpot(2.6, 3.44),
-            FlSpot(4.9, 3.44),
-            FlSpot(6.8, 3.44),
-            FlSpot(8, 3.44),
-            FlSpot(9.5, 3.44),
-            FlSpot(11, 3.44),
+          spots:  [
+            for(int i=0;i<(10);i++)
+              FlSpot(double.parse(i.toString()), double.parse(widget.data.predictions[i].toString())),
           ],
           isCurved: true,
           gradient: LinearGradient(
-            colors: [
-              ColorTween(begin: gradientColors[0], end: gradientColors[1])
-                  .lerp(0.2)!,
-              ColorTween(begin: gradientColors[0], end: gradientColors[1])
-                  .lerp(0.2)!,
-            ],
+            colors: gradientColors,
           ),
-          barWidth: 5,
+          barWidth: 2,
           isStrokeCapRound: true,
           dotData: FlDotData(
             show: false,
@@ -278,14 +346,9 @@ class _PriceGraphState extends State<PriceGraph> {
           belowBarData: BarAreaData(
             show: true,
             gradient: LinearGradient(
-              colors: [
-                ColorTween(begin: gradientColors[0], end: gradientColors[1])
-                    .lerp(0.2)!
-                    .withOpacity(0.1),
-                ColorTween(begin: gradientColors[0], end: gradientColors[1])
-                    .lerp(0.2)!
-                    .withOpacity(0.1),
-              ],
+              colors: gradientColors
+                  .map((color) => color.withOpacity(0.3))
+                  .toList(),
             ),
           ),
         ),
