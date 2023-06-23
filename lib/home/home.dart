@@ -56,7 +56,7 @@ class _HomeState extends State<Home> {
             child: Column(children: [
               for(int i=0;i<3;i++) 
                 Column(children: [
-                  ListCard(widget.companies[i].name, widget.companies[i].code, double.parse(widget.companies[i].close.toStringAsFixed(3)), double.parse(widget.companies[i].increase.toStringAsFixed(2)), 'assets/companies/'+widget.companies[i].name.toLowerCase()+'.png', (i%2)!=0),
+                  ListCard(widget.companies[i].name, widget.companies[i].code, widget.companies[i].close, widget.companies[i].increase, 'assets/companies/'+widget.companies[i].name.toLowerCase()+'.png', (i%2)!=0),
                   SizedBox(height: 20,),
                 ],)
             ]),

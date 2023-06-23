@@ -118,7 +118,7 @@ class _PriceGraphState extends State<PriceGraph> {
               : (graphTimeline=="1M")
                 ? mainData(30)
                 : (graphTimeline=="1Y")
-                  ? mainData(365)
+                  ? mainData(364)
                   : predictData()
             ),
           ),

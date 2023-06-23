@@ -44,12 +44,12 @@ class ListCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                   Text(
-                    "\$$price".toString(),
+                    "\$${double.parse(price.toStringAsFixed(3))}".toString(),
                     style: TextStyle(fontSize: 15,color: Colors.white, decoration: TextDecoration.none, fontFamily: "GoogleSans"),
                   ),
                   SizedBox(height: 3),
                   Text(
-                    (increase<0)?"$increase%": "+$increase%",
+                    (increase<0)?"${double.parse(price.toStringAsFixed(3))}%": "+${double.parse(price.toStringAsFixed(3))}%",
                     style: TextStyle(fontSize: 8,color: Colors.white, decoration: TextDecoration.none, fontFamily: "GoogleSans"),
                   )
                 ]),

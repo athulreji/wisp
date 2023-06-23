@@ -2,36 +2,29 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:wisp/api/companies.dart';
-import 'package:wisp/api/predictions.dart';
 import 'package:wisp/bookmark/bookmark.dart';
 import 'package:wisp/graph/graph.dart';
 import 'package:wisp/home/home.dart';
-import 'package:wisp/services/companies.dart';
 import 'package:wisp/wallet/wallet.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'wisp',
+      title: 'Flutter Demo',
       theme: ThemeData(
-        scaffoldBackgroundColor: Color(0xff3D3B46),
-        fontFamily: "GoogleSans",
+        fontFamily: 'GoogleSans',
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const  Navigator(),
+      home: const Navigator(),
     );
   }
 }
@@ -79,7 +72,7 @@ class _NavigatorState extends State<Navigator> {
               stream: Stream.fromFuture(fetchCompaniesData()),
               builder: (context, snapshot) {
                 if (snapshot.hasData == false) {
-                  return Center(child: CircularProgressIndicator());
+                  return Center(child: CircularProgressIndicator(color: Color(0xffE6F5FB),));
                 }
                 else{
                   return selectScreen(_activeIndex, snapshot.data);
