@@ -1,16 +1,9 @@
 # wisp
 
-A new Flutter project.
+Flutter app which shows stock prices of popular companies and their future predictions.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Screenshots
+![image](https://github.com/athulreji/wisp/assets/28696896/810820c4-0b22-4331-92af-458c44e5c263)
+![image](https://github.com/athulreji/wisp/assets/28696896/4d59ed4b-ff99-44c2-a60f-f90d8a9550c0)
+![image](https://github.com/athulreji/wisp/assets/28696896/655a2d4a-743c-4b5e-817b-866ce9f3d75c)
+![image](https://github.com/athulreji/wisp/assets/28696896/68518224-9c50-482a-ada1-b8076bfc4d7c)
